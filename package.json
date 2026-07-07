@@ -1,0 +1,28 @@
+{
+  "name": "@squirrelbrain/cli",
+  "version": "0.1.0",
+  "description": "Squirrel — your X bookmarks as a searchable semantic memory, in your terminal and your agent.",
+  "license": "MIT",
+  "repository": "github:emranemran/squirrelbrain-cli",
+  "type": "module",
+  "bin": {
+    "squirrel": "dist/index.js",
+    "sq": "dist/index.js"
+  },
+  "files": ["dist", "SKILL.md", "README.md"],
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "bun build src/index.ts --target=node --outfile=dist/index.js --banner='#!/usr/bin/env node'",
+    "prepublishOnly": "bun run build",
+    "typecheck": "tsc --noEmit"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "devDependencies": {
+    "@types/node": "26.1.0",
+    "typescript": "6.0.3"
+  }
+}

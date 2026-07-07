@@ -1,0 +1,8 @@
+{
+  "name": "squirrel",
+  "version": "0.1.0",
+  "description": "Your X bookmarks as a searchable semantic memory inside your agent — search, surface, and follow through.",
+  "author": { "name": "emranemran" },
+  "homepage": "https://github.com/emranemran/squirrelbrain-cli",
+  "license": "MIT"
+}
