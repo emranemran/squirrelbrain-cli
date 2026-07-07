@@ -41,11 +41,13 @@ export async function login(): Promise<void> {
     if (res.status === 202) continue;
     if (res.status === 200) {
       const { token } = (await res.json()) as { token: string };
-      writeConfig({ ...readConfig(), token });
+      // Persist a custom API URL (self-host/local) so future shells don't need the env var.
+      const apiUrlOverride = process.env.SQUIRREL_API_URL;
+      writeConfig({ ...readConfig(), token, ...(apiUrlOverride ? { apiUrl: apiUrlOverride } : {}) });
       const me = await request<{ user: { email: string; plan: string; bookmark_count: number } }>(
         "/auth/me",
       );
-      writeConfig({ ...readConfig(), token, email: me.user.email });
+      writeConfig({ ...readConfig(), email: me.user.email });
       emit({ ok: true, email: me.user.email, plan: me.user.plan });
       return;
     }
