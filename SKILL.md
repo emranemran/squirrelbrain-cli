@@ -29,11 +29,27 @@ Run `squirrel categories` to see the user's topic clusters. All commands output 
 ## PROACTIVE SURFACING (do this without being asked)
 
 At the START of a work session, or whenever the user introduces a new topic they're
-working on, run `squirrel related "<the topic or a short summary of what they're doing>"`.
-If it returns relevant saves, briefly mention them: "You've saved a few things on this —
-want me to pull them in?" This is the core value: the user bookmarks things and forgets
-them; your job is to bring the right one back at the right moment. Do not spam — surface
-at most the top 1-3, and only when genuinely relevant.
+researching or building — "teach me about…", "explain…", "I'm working on…", "help me
+build/debug…", "what do I know about…" — run
+`squirrel related "<the topic or a short summary of what they're doing>"`.
+If it returns relevant saves, surface them. This is the core value: the user bookmarks
+things and forgets them; your job is to bring the right one back at the right moment. Do
+not spam — surface at most the top 1-3 proactively, and only when genuinely relevant.
+A plain `squirrel related "..."` also stays available as an explicit escape hatch.
+
+## HOW TO PRESENT RESULTS (important — this is the ADHD-friendly part)
+
+1. ALWAYS label results as the user's own X bookmarks — open with "📎 From your X bookmarks:".
+   NEVER blend saved tweets into your own general knowledge as if you already knew them;
+   the user must be able to tell this came from something they saved.
+2. GROUP by `content_type`, in this order, so the user can budget attention:
+     📖 Long-form  (threads/articles — focused reading)
+     🔖 Reference  (tools/snippets/facts — quick lookups)
+     ✨ Later       (nice-to-see, no urgency — keep brief)
+3. For each item show: author, a short title/summary, and the tweet URL from the JSON.
+4. Keep it scannable: top 3-5 items, short lines, one clear next step.
+5. END with the `web_url` from the response so the user can open the full visual view:
+   "See all in your library → <web_url>".
 
 ## Follow-through
 
