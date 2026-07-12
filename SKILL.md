@@ -34,14 +34,14 @@ Run `squirrel categories` to see the user's topic clusters. All commands output 
 ## SYNTHESIZE, don't just list (when the user asked a question)
 
 When the user asks a real question — not just "what did I save" — treat Squirrel's results as
-**source material to reason over, not a list to dump**:
-- Weave the saved bookmarks into a written answer, **combined with your own knowledge and any
-  other tools/sources** you have (the codebase, web, other connectors).
-- Make clear which points came from the user's own saves (📎) and cite each tweet URL.
-- Explicitly note where the saves **agree, conflict, or leave a gap** — that cross-analysis is
-  the value, since the user has forgotten what's in there.
-- Use `squirrel gather "<topic>"` to pull a broad, deduped context bundle in one call, then
-  synthesize from it.
+**source material to reason over**, combining them with your own knowledge and any other
+tools/sources you have (the codebase, web, other connectors). Use `squirrel gather "<topic>"`
+to pull a broad, deduped bundle in one call, then synthesize from it.
+
+**But synthesize deeply UNDER the surface — deliver it LAYERED, not as a wall of text.** The
+user is neurodivergent; a 500-word answer recreates the overwhelm this tool exists to remove.
+Do the full analysis internally, then present it progressively (see HOW TO PRESENT below):
+lead with a short answer, and let the user pull the detail.
 
 ## PROACTIVE SURFACING (do this without being asked)
 
@@ -56,17 +56,27 @@ A plain `squirrel related "..."` also stays available as an explicit escape hatc
 
 ## HOW TO PRESENT RESULTS (important — this is the ADHD-friendly part)
 
-1. ALWAYS label results as the user's own X bookmarks — open with "📎 From your X bookmarks:".
-   NEVER blend saved tweets into your own general knowledge as if you already knew them;
-   the user must be able to tell this came from something they saved.
-2. GROUP by `content_type`, in this order, so the user can budget attention:
-     📖 Long-form  (threads/articles — focused reading)
-     🔖 Reference  (tools/snippets/facts — quick lookups)
-     ✨ Later       (nice-to-see, no urgency — keep brief)
-3. For each item show: author, a short title/summary, and the tweet URL from the JSON.
-4. Keep it scannable: top 3-5 items, short lines, one clear next step.
-5. END with the `web_url` from the response so the user can open the full visual view:
-   "See all in your library → <web_url>".
+The user is neurodivergent. Long, dense answers cause the exact overwhelm this tool removes.
+Follow evidence-based cognitive-accessibility rules: **lead with the answer, chunk hard,
+bullets over prose, and let the user pull detail** (progressive disclosure).
+
+**Always:**
+1. Label results as the user's own X bookmarks — open with "📎 From your X bookmarks:".
+   NEVER silently blend saved tweets into your own general knowledge.
+2. Cite each item's tweet URL. Show author + a short summary — not the full text.
+3. Short lines. Plain, literal language (avoid idioms/metaphors). One idea per bullet.
+4. END with the `web_url`: "See all in your library → <web_url>".
+
+**For a quick surface (a few relevant saves):** the top 1–5 as bullets, optionally tagged by
+type (📖 long-form · 🔖 reference · ✨ later) so the user can budget attention. Then stop.
+
+**For a synthesis / "what do I know about X" (many saves):** deliver it in LAYERS —
+- **Layer 1 (default): a headline + 3–5 bullets + one gap/tension. ~120 words, then STOP.**
+  Do not pour the whole analysis out at once.
+- **Layer 2 (only if the user asks):** offer the deep dive as a menu, ideally the clusters
+  `gather` returned — "Want me to go deeper on reading / math / homeschooling?" — and expand
+  **one** at a time.
+- Never emit one giant synthesis paragraph. If a section runs long, it becomes a Layer-2 pull.
 
 ## Follow-through
 
