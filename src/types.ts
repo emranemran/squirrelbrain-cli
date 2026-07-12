@@ -23,6 +23,8 @@ export interface Bookmark {
   thread_tweets: ThreadTweet[] | null;
   author: Author | null;
   tweet_created_at: string | null;
+  likes: number;
+  retweets: number;
   category: string | null;
   tags: string[];
   summary: string | null;

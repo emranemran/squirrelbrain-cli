@@ -31,6 +31,19 @@ Run `squirrel categories` to see the user's topic clusters. All commands output 
   few" — to answer "is that all?" or "how many," run `filter --tag` and report its `total`.
   (e.g. searching "recipes" may surface 4; `filter --tag recipe` reveals 38.)
 
+## Ranking by popularity, and NOT over-filtering
+
+- **Popularity is real data.** Every bookmark carries `likes` and `retweets` (the tweet's
+  public counts). To answer "my most popular / top / most-liked saves about X", use
+  `squirrel filter --tag <x> --sort popular` (exhaustive, ranked by likes) — never claim you
+  can't rank by popularity.
+- **content_type and cluster are HINTS, not hard gates.** When the user asks broadly ("my
+  essays / articles / long-form writing on X"), do NOT filter to `content_type=long_form` or a
+  single cluster and stop — link-only saves (bare URLs) are often mis-tagged "later"/"reference"
+  and scattered across clusters, so a hard filter silently drops real matches. Instead search or
+  `gather` across the topic, then USE content_type + likes to order and label — not to exclude.
+  If you narrowed and the user says "you missed X", widen (drop the content_type/cluster gate).
+
 ## The user's categories are THEIRS, not a fixed list
 
 `squirrel categories` returns the user's own **emergent topic clusters**, generated from their

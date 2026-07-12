@@ -50,6 +50,7 @@ export async function filter(opts: {
   tag?: string;
   content_type?: string;
   cluster_id?: number;
+  sort?: string;
   since?: string;
   until?: string;
   limit?: number;

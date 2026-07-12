@@ -89,6 +89,7 @@ async function main(): Promise<void> {
         tag: str(flags.tag),
         content_type: str(flags["content-type"]),
         cluster_id: num(flags.cluster),
+        sort: flags.popular ? "popular" : str(flags.sort),
         since: str(flags.since),
         until: str(flags.until),
         limit: num(flags.limit),
