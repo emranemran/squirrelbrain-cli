@@ -24,16 +24,24 @@ export async function categories(): Promise<void> {
   emit(await request("/bookmarks/categories"));
 }
 
-export async function search(query: string, limit?: number): Promise<void> {
+export async function search(query: string, limit?: number, full?: boolean): Promise<void> {
   const params = new URLSearchParams({ q: query });
   if (limit) params.set("limit", String(limit));
+  if (full) params.set("full_text", "1");
   emit(await request<{ results: Bookmark[] }>(`/bookmarks/search?${params}`));
 }
 
-export async function related(context: string, limit?: number): Promise<void> {
+export async function related(context: string, limit?: number, full?: boolean): Promise<void> {
   const params = new URLSearchParams({ context });
   if (limit) params.set("limit", String(limit));
+  if (full) params.set("full_text", "1");
   emit(await request<{ results: Bookmark[] }>(`/bookmarks/related?${params}`));
+}
+
+export async function gather(topic: string, budget?: number): Promise<void> {
+  const params = new URLSearchParams({ topic });
+  if (budget) params.set("budget", String(budget));
+  emit(await request(`/bookmarks/gather?${params}`));
 }
 
 export async function filter(opts: {

@@ -22,9 +22,26 @@ Run `squirrel categories` to see the user's topic clusters. All commands output 
 
 ## When to use Squirrel
 
-- The user asks about something they might have saved: run `squirrel search "<topic>"`.
+- The user asks about something they might have saved: run `squirrel search "<topic>"`
+  (hybrid semantic + keyword; results are diversified into distinct angles).
+- The user wants a **summary/synthesis** of what they've saved on a subject
+  ("what do I know about X", "brief me on Y from my bookmarks"): run
+  `squirrel gather "<topic>"` — a diverse, de-duplicated, token-budgeted bundle plus the
+  topic clusters it spans. Add `--full` to search/related for full thread text.
 - The user names a concrete author/date/tag: run `squirrel filter ...`.
 - You want the full thread behind a hit: run `squirrel get <id>`.
+
+## SYNTHESIZE, don't just list (when the user asked a question)
+
+When the user asks a real question — not just "what did I save" — treat Squirrel's results as
+**source material to reason over, not a list to dump**:
+- Weave the saved bookmarks into a written answer, **combined with your own knowledge and any
+  other tools/sources** you have (the codebase, web, other connectors).
+- Make clear which points came from the user's own saves (📎) and cite each tweet URL.
+- Explicitly note where the saves **agree, conflict, or leave a gap** — that cross-analysis is
+  the value, since the user has forgotten what's in there.
+- Use `squirrel gather "<topic>"` to pull a broad, deduped context bundle in one call, then
+  synthesize from it.
 
 ## PROACTIVE SURFACING (do this without being asked)
 

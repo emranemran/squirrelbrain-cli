@@ -7,8 +7,9 @@ const HELP = {
   usage: "squirrel <command> [args] [--pretty]",
   commands: [
     "login | logout | whoami | capabilities | categories | status",
-    'search "<query>" [--limit N]',
-    'related "<work context>" [--limit N]',
+    'search "<query>" [--limit N] [--full]',
+    'related "<work context>" [--limit N] [--full]',
+    'gather "<topic>" [--budget N]     (synthesis-ready context bundle)',
     "filter [--author A] [--category C] [--tag T] [--since D] [--until D] [--limit N]",
     "get <bookmark_id>",
     "recent [--days N] [--limit N]",
@@ -68,13 +69,18 @@ async function main(): Promise<void> {
       return core.categories();
     case "search": {
       const q = rest.join(" ").trim();
-      if (!q) fail("invalid_args", 'Usage: squirrel search "<query>" [--limit N]');
-      return core.search(q, num(flags.limit));
+      if (!q) fail("invalid_args", 'Usage: squirrel search "<query>" [--limit N] [--full]');
+      return core.search(q, num(flags.limit), Boolean(flags.full));
     }
     case "related": {
       const context = rest.join(" ").trim();
-      if (!context) fail("invalid_args", 'Usage: squirrel related "<work context>" [--limit N]');
-      return core.related(context, num(flags.limit));
+      if (!context) fail("invalid_args", 'Usage: squirrel related "<work context>" [--limit N] [--full]');
+      return core.related(context, num(flags.limit), Boolean(flags.full));
+    }
+    case "gather": {
+      const topic = rest.join(" ").trim();
+      if (!topic) fail("invalid_args", 'Usage: squirrel gather "<topic>" [--budget N]');
+      return core.gather(topic, num(flags.budget));
     }
     case "filter":
       return core.filter({
