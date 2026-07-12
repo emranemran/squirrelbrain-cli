@@ -20,6 +20,24 @@ missing, run one-off commands with `npx -y @squirrelbrain/cli <cmd>`.
 Run `squirrel capabilities` to get the full command catalog and JSON shapes.
 Run `squirrel categories` to see the user's topic clusters. All commands output JSON.
 
+## Pick the right tool: FIND a few vs. LIST them all
+
+- **"Find / what did I save about X"** (a few relevant) → `squirrel search "<topic>"`
+  (hybrid semantic + keyword, diversified). Returns a **ranked sample**, not everything.
+- **"All my X / how many X / show me every X"** (enumerate) → `squirrel filter --tag <x>`.
+  Filter is EXHAUSTIVE and returns a `total` count. **Semantic search UNDER-counts** — it
+  caps at a limit and diversifies away similar items, so never use it to answer "how many."
+- **NEVER state a search's results as a total.** If you only ran `search`, say "here are a
+  few" — to answer "is that all?" or "how many," run `filter --tag` and report its `total`.
+  (e.g. searching "recipes" may surface 4; `filter --tag recipe` reveals 38.)
+
+## The user's categories are THEIRS, not a fixed list
+
+`squirrel categories` returns the user's own **emergent topic clusters**, generated from their
+bookmarks and LLM-named — there is no fixed taxonomy. To list everything in one, use its id:
+`squirrel filter --cluster <id>`. Prefer these clusters + the free-form `tags` over the legacy
+fixed `category` field when grouping or enumerating.
+
 ## When to use Squirrel
 
 - The user asks about something they might have saved: run `squirrel search "<topic>"`

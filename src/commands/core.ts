@@ -48,13 +48,15 @@ export async function filter(opts: {
   author?: string;
   category?: string;
   tag?: string;
+  content_type?: string;
+  cluster_id?: number;
   since?: string;
   until?: string;
   limit?: number;
 }): Promise<void> {
   const params = new URLSearchParams();
   for (const [k, v] of Object.entries(opts)) if (v !== undefined) params.set(k, String(v));
-  emit(await request<{ results: Bookmark[] }>(`/bookmarks/filter?${params}`));
+  emit(await request<{ total: number; count: number; results: Bookmark[] }>(`/bookmarks/filter?${params}`));
 }
 
 export async function get(id: string): Promise<void> {
