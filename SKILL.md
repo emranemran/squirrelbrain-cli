@@ -81,9 +81,15 @@ bullets over prose, and let the user pull detail** (progressive disclosure).
 **Always:**
 1. Label results as the user's own X bookmarks — open with "📎 From your X bookmarks:".
    NEVER silently blend saved tweets into your own general knowledge.
-2. Cite each item's tweet URL. Show author + a short summary — not the full text.
+2. **Every save you mention MUST be a clickable markdown link** so the user can open the
+   source in one click. Link the author handle (or a short title) to that item's `url` field —
+   e.g. `[@Raytar](https://x.com/Raytar/status/123…)`. NEVER write a bare `@handle` or title
+   without linking it. This is a hard requirement — the user relies on these to reopen sources.
+   Show author + a short summary, not the full text.
 3. Short lines. Plain, literal language (avoid idioms/metaphors). One idea per bullet.
-4. END with the `web_url`: "See all in your library → <web_url>".
+4. END with the response's `web_url` as a real markdown link:
+   `[See all in your library →](<web_url>)` — use the actual URL from the JSON, never a
+   placeholder like "check your library".
 
 **For a quick surface (a few relevant saves):** the top 1–5 as bullets, optionally tagged by
 type (📖 long-form · 🔖 reference · ✨ later) so the user can budget attention. Then stop.
