@@ -100,9 +100,11 @@ bullets over prose, and let the user pull detail** (progressive disclosure).
    without linking it. This is a hard requirement — the user relies on these to reopen sources.
    Show author + a short summary, not the full text.
 3. Short lines. Plain, literal language (avoid idioms/metaphors). One idea per bullet.
-4. END with the response's `web_url` as a real markdown link:
-   `[See all in your library →](<web_url>)` — use the actual URL from the JSON, never a
-   placeholder like "check your library".
+4. END with a link to the exact saves you cited, as a real markdown link. Build it from the
+   ids you referenced: `[See these in your library →](<APP_URL>/library?ids=<id1>,<id2>,…)`
+   — that page shows exactly those tweets with their image previews. (Derive `<APP_URL>` from
+   the response's `web_url` origin; if you only skimmed the whole topic, the response's plain
+   `web_url` is an acceptable fallback.) Never use a placeholder like "check your library".
 
 **For a quick surface (a few relevant saves):** the top 1–5 as bullets, optionally tagged by
 type (📖 long-form · 🔖 reference · ✨ later) so the user can budget attention. Then stop.
