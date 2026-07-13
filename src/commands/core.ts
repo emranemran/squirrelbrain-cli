@@ -48,7 +48,6 @@ export async function filter(opts: {
   author?: string;
   category?: string;
   tag?: string;
-  content_type?: string;
   cluster_id?: number;
   sort?: string;
   since?: string;

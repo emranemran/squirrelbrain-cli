@@ -37,12 +37,12 @@ Run `squirrel categories` to see the user's topic clusters. All commands output 
   public counts). To answer "my most popular / top / most-liked saves about X", use
   `squirrel filter --tag <x> --sort popular` (exhaustive, ranked by likes) — never claim you
   can't rank by popularity.
-- **content_type and cluster are HINTS, not hard gates.** When the user asks broadly ("my
-  essays / articles / long-form writing on X"), do NOT filter to `content_type=long_form` or a
-  single cluster and stop — link-only saves (bare URLs) are often mis-tagged "later"/"reference"
-  and scattered across clusters, so a hard filter silently drops real matches. Instead search or
-  `gather` across the topic, then USE content_type + likes to order and label — not to exclude.
-  If you narrowed and the user says "you missed X", widen (drop the content_type/cluster gate).
+- **Tags (incl. "long-form"/"reference") are SOFT labels, never hard gates.** When the user asks
+  broadly ("my essays / articles / long-form writing on X"), do NOT gate to one tag or one
+  cluster and stop — a link-only save may lack the "long-form" tag yet still be a long essay.
+  Instead `gather`/search across the topic, then use the `long-form` tag + `likes` to order and
+  label — not to exclude. `filter --tag long-form` is fine when the user explicitly wants tagged
+  long reads. If you narrowed and the user says "you missed X", widen (drop the tag/cluster gate).
 
 ## The user's categories are THEIRS, not a fixed list
 
@@ -106,8 +106,8 @@ bullets over prose, and let the user pull detail** (progressive disclosure).
    the response's `web_url` origin; if you only skimmed the whole topic, the response's plain
    `web_url` is an acceptable fallback.) Never use a placeholder like "check your library".
 
-**For a quick surface (a few relevant saves):** the top 1–5 as bullets, optionally tagged by
-type (📖 long-form · 🔖 reference · ✨ later) so the user can budget attention. Then stop.
+**For a quick surface (a few relevant saves):** the top 1–5 as bullets. If some are tagged
+"long-form", you can note it (📖) so the user knows which need focused reading. Then stop.
 
 **For a synthesis / "what do I know about X" (many saves):** deliver it in LAYERS —
 - **Layer 1 (default): a headline + 3–5 bullets + one gap/tension. ~120 words, then STOP.**
